@@ -104,3 +104,66 @@
 ---
 
 ### 2. Async/Await
+- Promise가 사용되어 콜백 지옥 해결했지만, then-catch가 반복되어 코드가 장황함
+- Promise를 사용한 코드를 더 깔끔하게 줄여줌
+    
+    ```tsx
+    /*기존 : 프로미스로 변환한 코드*/
+    
+    function findAndSaveUser(Users){
+    	User.findOne({})
+    		.then(user)=>{
+    			user.name='zero';
+    			return user.save;
+    		})
+    		.then((user)=>{
+    			return User.findOne({gender:'m'});
+    		})
+    		.then((user)=>{
+    			//...
+    		})
+    		.catch(err=>{
+    			console.error(err);
+    		});
+    }
+    
+    /*개선 : async/await문법 사용한 코드*/
+    
+    async function findAndSaveUser(Users){
+    	let user = await Users.findOne({}); // 1.resolve될 때까지 기다림
+    	user.name='zero'; // 2.user변수 초기화
+    	user = await user.save();
+    	user = awai Users.findOne({gender:'m'});
+    
+    	//...
+    }
+    ```
+    
+    - 함수 선언부 : `async function`으로 교체
+    
+     - 프로미스 : 앞에 `await` 붙임
+    
+     → 함수는 해당 프로미스가 resolve될 때까지 기다림 → 다음 로직으로 넘어감
+    
+     - 에러를 처리하는 부분 없음 
+    
+    ```jsx
+    /*에러 처리 코드 추가*/
+    
+    async function findAndSaveUser(Users){
+    	try{	
+    		let user = await Users.findOne({}); // 1.resolve될 때까지 기다림
+    		user.name='zero'; // 2.user변수 초기화
+    		user = await user.save();
+    		user = awai Users.findOne({gender:'m'});
+    		
+    		//...
+    	}catch(error){
+    		console.error(error);
+    	}
+    }
+    ```
+    
+     - catch문이 에러 처리 
+    
+     - try-catch문으로 로직 감쌈
