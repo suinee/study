@@ -167,3 +167,27 @@
      - catch문이 에러 처리 
     
      - try-catch문으로 로직 감쌈
+ - 최상위 레벨 코드(top-level code)에 `await`을 사용할 수 없음 !
+    
+    ⇒ 익명 async 함수로 코드를 감싸면 최상위 레벨 코드에도 `await` 사용가능 
+    
+    ```tsx
+    //최상위 레벨에서 문법 에러
+    let response = await fetch('/article/promise-chaining/user.json');
+    let user = await response.json();
+    
+    /*익명 asnyc함수로 코드 감쌈*/
+    (async () => {
+      let response = await fetch('/article/promise-chaining/user.json');
+      let user = await response.json();
+      ...
+    })();
+    ```
+    
+
+---
+
+참조 : [https://ko.javascript.info/async-await](https://ko.javascript.info/async-await)
+
+[https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Promise](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Promise)  
+   
