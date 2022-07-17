@@ -133,7 +133,7 @@
     	let user = await Users.findOne({}); // 1.resolve될 때까지 기다림
     	user.name='zero'; // 2.user변수 초기화
     	user = await user.save();
-    	user = awai Users.findOne({gender:'m'});
+    	user = await Users.findOne({gender:'m'});
     
     	//...
     }
