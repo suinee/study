@@ -202,41 +202,39 @@
     ```
     
      - 값 → 키 의 역방향 매핑(reverse mapping) 존재 X
-    
-    <aside>
-    💡 **숫자 열거형** : 역방향 매핑 존재 O
-    
-    ```tsx
-    var Direction;
-    (function (Direction) {
-        Direction[Direction["East"] = 0] = "East";
-        Direction[Direction["West"] = 1] = "West";
-        Direction[Direction["South"] = 2] = "South";
-        Direction[Direction["North"] = 3] = "North";
-    })(Direction || (Direction = {}));
-    var east = Direction.East;
-    ```
-    
-     - 키 → 값으로의 매핑 정의 : `Direction["EAST"] = 0`
-    
-     - 값 → 키로의 역방향 매핑 : `Direction[Direction["East"] = 0] = "East”`
-    
-    **문자열 열거형** :  역방향 매핑 존재 X
-    
-    ```tsx
-    var Direction;
-    (function (Direction) {
-        Direction["East"] = "EAST";
-        Direction["West"] = "WEST";
-        Direction["South"] = "SOUTH";
-        Direction["North"] = "NORTH";
-    })(Direction || (Direction = {}));
-    ```
-    
-     - 키 → 값으로의 매핑 : `Direction["East"] = "EAST"`
-    
-    </aside>
-    
+        <aside>
+💡 **숫자 열거형** : 역방향 매핑 존재 O
+
+```tsx
+var Direction;
+(function (Direction) {
+    Direction[Direction["East"] = 0] = "East";
+    Direction[Direction["West"] = 1] = "West";
+    Direction[Direction["South"] = 2] = "South";
+    Direction[Direction["North"] = 3] = "North";
+})(Direction || (Direction = {}));
+var east = Direction.East;
+```
+
+ - 키 → 값으로의 매핑 정의 : `Direction["EAST"] = 0`
+
+ - 값 → 키로의 역방향 매핑 : `Direction[Direction["East"] = 0] = "East”`
+
+**문자열 열거형** :  역방향 매핑 존재 X
+
+```tsx
+var Direction;
+(function (Direction) {
+    Direction["East"] = "EAST";
+    Direction["West"] = "WEST";
+    Direction["South"] = "SOUTH";
+    Direction["North"] = "NORTH";
+})(Direction || (Direction = {}));
+```
+
+ - 키 → 값으로의 매핑 : `Direction["East"] = "EAST"`
+
+</aside>
 
 - **상수 멤버 vs 계산된 멤버**
     - 상수 멤버(constant member) : 컴파일 타임에 알 수 있는 상수값으로 초기화된 멤버
